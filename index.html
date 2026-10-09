@@ -3,60 +3,244 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MauriGames | Gaming Store MU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b18">
+<title>MauriGames | Gaming Store Mauritius</title>
 <style>
+:root{--bg:#090914;--panel:#15152a;--purple:#8b5cf6;--blue:#38bdf8;--text:#f8fafc;--muted:#b9b9d0}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#090d18;color:white}
-header{padding:22px 16px;background:#111a2d;text-align:center;border-bottom:2px solid #7c3aed}
-.logo{font-size:30px;font-weight:900;color:#a78bfa}
-header p{color:#cbd5e1;margin-bottom:0}
-.hero{padding:42px 20px;text-align:center;background:radial-gradient(circle at top,#402080,#111827 65%)}
-.hero h1{font-size:34px;margin:0 0 12px}
-.hero p{color:#e2e8f0;line-height:1.6}
-.btn{display:inline-block;background:#7c3aed;color:white;text-decoration:none;padding:13px 20px;border-radius:10px;font-weight:bold;margin-top:12px}
-h2{text-align:center;margin:30px 0 18px}
-.products{padding:0 14px 30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.card{background:#151d30;border:1px solid #29344d;border-radius:15px;padding:17px 10px;text-align:center}
-.emoji{font-size:38px}
-.card h3{margin:10px 0;color:#ddd6fe}
-.card p{color:#cbd5e1;font-size:13px;min-height:30px}
-.order{display:block;background:#16a34a;color:white;text-decoration:none;padding:11px 5px;border-radius:8px;font-weight:bold;font-size:13px}
-.info{margin:0 14px 25px;background:#151d30;padding:20px;border-radius:13px;text-align:center;line-height:1.7}
-footer{text-align:center;background:#05070d;padding:22px;color:#94a3b8;font-size:13px}
-@media(min-width:650px){.products{grid-template-columns:repeat(3,1fr);max-width:950px;margin:auto}.hero h1{font-size:48px}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{background:#111125;border-bottom:1px solid #343052;padding:17px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.logo{font-size:23px;font-weight:900;color:#c4b5fd}
+.logo span{color:var(--blue)}
+button,a{cursor:pointer}
+.cart-btn,.primary{border:0;border-radius:10px;padding:12px 16px;background:linear-gradient(100deg,#7c3aed,#2563eb);color:white;font-weight:bold;text-decoration:none}
+.hero{text-align:center;padding:58px 18px 45px;background:radial-gradient(ellipse at top,#352064 0%,#111125 52%,#090914 100%)}
+.tag{color:#c4b5fd;font-weight:bold;font-size:12px;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,7vw,55px);margin:14px 0}
+.hero h1 span{color:#a78bfa}
+.hero p{color:#dddced;line-height:1.7;max-width:580px;margin:0 auto}
+.hero .primary{display:inline-block;margin-top:23px}
+.trust{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:25px}
+.trust span{font-size:12px;color:#e9e6ff;background:#ffffff0d;border:1px solid #ffffff18;border-radius:30px;padding:9px 12px}
+main{max-width:1100px;margin:auto;padding:25px 15px 60px}
+.section-title{margin:28px 0 8px;font-size:25px}
+.sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.filters button{border:1px solid #343451;background:#17172b;color:white;border-radius:25px;padding:10px 14px}
+.filters button.active{background:#7c3aed;border-color:#7c3aed}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:linear-gradient(150deg,#19192f,#11111f);border:1px solid #30304b;border-radius:15px;padding:15px;display:flex;flex-direction:column;min-width:0}
+.flag{font-size:28px}
+.card h3{font-size:16px;margin:10px 0 6px}
+.desc{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 10px}
+.price{font-size:18px;font-weight:bold;color:#c4b5fd;margin:8px 0}
+.card small{color:#a5a5bd;font-size:11px;line-height:1.5}
+.add{border:0;border-radius:8px;background:#7c3aed;color:white;font-weight:bold;padding:11px 8px;margin-top:13px;width:100%}
+.add:active,.primary:active{opacity:.8}
+.badge{font-size:10px;background:#273b34;color:#86efac;border-radius:5px;padding:4px 6px;align-self:flex-start}
+.notice{margin-top:20px;padding:16px;border:1px solid #373054;background:#17142a;border-radius:12px;color:#ded8f9;font-size:13px;line-height:1.8}
+.cart{background:var(--panel);border:1px solid #343451;border-radius:15px;padding:18px;margin-top:40px}
+.cart-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cart-head h2{margin:0;font-size:22px}
+.clear{background:none;border:0;color:#fca5a5}
+.empty{color:var(--muted);font-size:14px;padding:15px 0}
+.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:13px 0;border-bottom:1px solid #343451}
+.item-name{font-size:14px;font-weight:bold;line-height:1.5}
+.item-price{font-size:13px;color:#c4b5fd;margin-top:5px}
+.qty{display:flex;align-items:center;gap:10px;margin-top:8px}
+.qty button{border:1px solid #484568;background:#252541;color:white;border-radius:6px;width:30px;height:30px}
+.remove{background:none;border:0;color:#fca5a5;font-size:12px;margin-top:6px}
+.total{display:flex;justify-content:space-between;font-size:19px;font-weight:bold;margin:20px 0}
+.whatsapp{display:block;width:100%;padding:15px;background:#16a34a;color:white;border:0;border-radius:10px;font-weight:bold;font-size:15px}
+.hint{color:var(--muted);font-size:11px;line-height:1.6;margin-top:12px}
+footer{text-align:center;border-top:1px solid #25253b;padding:28px 15px;color:#aaaac2;font-size:12px;line-height:1.8}
+footer strong{color:#c4b5fd}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}main{padding-left:22px;padding-right:22px}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}.logo{font-size:19px}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">🎮 MauriGames</div>
-<p>To game, to choix, to plaisir !</p>
+  <div class="logo">🎮 Mauri<span>Games</span></div>
+  <button class="cart-btn" onclick="document.getElementById('panier').scrollIntoView()">🛒 Panier (<span id="count">0</span>)</button>
 </header>
 
 <section class="hero">
-<h1>Level Up to Gaming ! 🔥</h1>
-<p>To pe rod Robux, UC PUBG, V-Bucks ou Gift Cards ?<br>
-Dekouver nou bann produit ek kontakte nou pou to commande.</p>
-<a class="btn" href="#produits">🛍️ Dekouver nou bann produit</a>
+  <div class="tag">GAMING STORE • MAURITIUS</div>
+  <h1>Level Up avec <span>MauriGames</span> 🔥</h1>
+  <p>Robux, UC PUBG et PSN Gift Cards. Dekouver nou bann prix, choisir to produit et prépare to commande facilement.</p>
+  <a class="primary" href="#produits">Découvrir les produits ↓</a>
+  <div class="trust">
+    <span>🇲🇺 Boutique en ligne</span>
+    <span>💰 Prix en Rs</span>
+    <span>📲 Commande WhatsApp</span>
+  </div>
 </section>
 
-<h2 id="produits">🎮 Nou bann produits</h2>
-<section class="products">
-<div class="card"><div class="emoji">🟦</div><h3>Robux</h3><p>Robux pou to compte Roblox.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20veux%20commander%20des%20Robux.">Commander</a></div>
-<div class="card"><div class="emoji">🎯</div><h3>UC PUBG</h3><p>UC pou PUBG Mobile.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20veux%20des%20UC%20PUBG.">Commander</a></div>
-<div class="card"><div class="emoji">🚌</div><h3>V-Bucks</h3><p>Pou Fortnite.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20veux%20des%20V-Bucks.">Commander</a></div>
-<div class="card"><div class="emoji">🎮</div><h3>PSN Gift Cards</h3><p>Pou PlayStation.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20veux%20une%20PSN%20Gift%20Card.">Commander</a></div>
-<div class="card"><div class="emoji">💻</div><h3>Steam Gift Cards</h3><p>Pou to compte Steam.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20veux%20une%20Steam%20Gift%20Card.">Commander</a></div>
-<div class="card"><div class="emoji">🎁</div><h3>Autres Gift Cards</h3><p>Demande nou pou lezot cartes disponibles.</p><a class="order" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20quelles%20gift%20cards%20sont%20disponibles%3F">Voir disponibilité</a></div>
-</section>
+<main>
+  <h2 class="section-title" id="produits">🛍️ Notre catalogue</h2>
+  <p class="sub">Choisis une catégorie, puis ajoute tes produits au panier.</p>
 
-<div class="info">
-<h2>❤️ Bienvenue dans la famille MauriGames</h2>
-<p>Nou enn boutique 100% en ligne à Maurice.<br>
-Pou koner prix, disponibilité ou faire to commande, contacte nou directement.</p>
-<a class="btn" href="https://wa.me/23054298285?text=Bonjour%20MauriGames%2C%20je%20voudrais%20des%20informations.">📱 WhatsApp : 5429 8285</a>
-</div>
+  <div class="filters">
+    <button class="active" onclick="filterProducts('Tous',this)">Tous</button>
+    <button onclick="filterProducts('PSN',this)">PSN Cards</button>
+    <button onclick="filterProducts('PUBG',this)">PUBG UC</button>
+    <button onclick="filterProducts('Robux',this)">Robux</button>
+  </div>
 
-<footer>© 2026 MauriGames — Gaming en ligne à Maurice 🎮</footer>
+  <section class="grid" id="catalogue"></section>
+
+  <div class="notice">
+    ✅ <strong>Prix PSN TTC :</strong> taxes et frais inclus, aucun coût supplémentaire annoncé.<br>
+    🚀 <strong>Livraison :</strong> codes PSN envoyés après paiement ; recharge PUBG effectuée après paiement, selon disponibilité.<br>
+    📌 Vérifie toujours le pays ou la région de ta carte avant de commander.
+  </div>
+
+  <section class="cart" id="panier">
+    <div class="cart-head">
+      <h2>🛒 Mon panier</h2>
+      <button class="clear" onclick="clearCart()">Vider le panier</button>
+    </div>
+    <div id="cart-items"><p class="empty">Ton panier est vide. Ajoute un produit pour commencer.</p></div>
+    <div class="total"><span>Total</span><span id="total">Rs 0</span></div>
+    <button class="whatsapp" onclick="checkout()">📲 Commander sur WhatsApp</button>
+    <p class="hint">Ta sélection et le total seront envoyés à MauriGames sur WhatsApp. La commande sera confirmée par nos soins avant paiement.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>🎮 MauriGames</strong><br>
+  To game, to choix, to plaisir !<br>
+  Boutique gaming 100% en ligne à Maurice.<br>
+  WhatsApp : 5429 8285<br>
+  © 2026 MauriGames
+</footer>
+
+<script>
+const products = [
+{id:1,cat:"PSN",name:"PSN USA — $10",price:990,icon:"🇺🇸"},
+{id:2,cat:"PSN",name:"PSN USA — $20",price:1350,icon:"🇺🇸"},
+{id:3,cat:"PSN",name:"PSN USA — $50",price:2750,icon:"🇺🇸"},
+{id:4,cat:"PSN",name:"PSN USA — $100",price:5300,icon:"🇺🇸"},
+{id:5,cat:"PSN",name:"PSN UK — £10",price:900,icon:"🇬🇧"},
+{id:6,cat:"PSN",name:"PSN UK — £20",price:1550,icon:"🇬🇧"},
+{id:7,cat:"PSN",name:"PSN UK — £50",price:4300,icon:"🇬🇧"},
+{id:8,cat:"PSN",name:"PSN EURO (FR) — €10",price:1025,icon:"🇪🇺"},
+{id:9,cat:"PSN",name:"PSN EURO (FR) — €20",price:1750,icon:"🇪🇺"},
+{id:10,cat:"PSN",name:"PSN EURO (FR) — €50",price:4250,icon:"🇪🇺"},
+{id:11,cat:"PSN",name:"PSN UAE — $10",price:1350,icon:"🇦🇪"},
+{id:12,cat:"PSN",name:"PSN UAE — $25",price:1870,icon:"🇦🇪"},
+{id:13,cat:"PSN",name:"PSN UAE — $50",price:2998,icon:"🇦🇪"},
+{id:14,cat:"PUBG",name:"PUBG Mobile — 60 UC",price:70,icon:"💎"},
+{id:15,cat:"PUBG",name:"PUBG Mobile — 300 + 25 UC",price:480,icon:"💎"},
+{id:16,cat:"PUBG",name:"PUBG Mobile — 600 + 60 UC ⭐",price:850,icon:"💎"},
+{id:17,cat:"PUBG",name:"PUBG Mobile — 1500 + 300 UC",price:1700,icon:"💎"},
+{id:18,cat:"PUBG",name:"PUBG Mobile — 3000 + 850 UC",price:3100,icon:"💎"},
+{id:19,cat:"PUBG",name:"PUBG Mobile — 6000 + 2100 UC",price:5880,icon:"💎"},
+{id:20,cat:"Robux",name:"500 Robux",price:550,icon:"🟡"},
+{id:21,cat:"Robux",name:"1,000 Robux",price:990,icon:"🟡"},
+{id:22,cat:"Robux",name:"2,000 Robux",price:1440,icon:"🟡"},
+{id:23,cat:"Robux",name:"4,500 Robux",price:4580,icon:"🟡"},
+{id:24,cat:"Robux",name:"10,000 Robux",price:6850,icon:"🟡"},
+{id:25,cat:"Robux",name:"22,500 Robux",price:9800,icon:"🟡"},
+{id:26,cat:"Robux",name:"45,000 Robux",price:19900,icon:"🟡"}
+];
+
+let cart = {};
+let activeCategory = "Tous";
+const money = n => "Rs " + n.toLocaleString("en-US");
+
+function renderProducts(){
+  const list = products.filter(p => activeCategory === "Tous" || p.cat === activeCategory);
+  document.getElementById("catalogue").innerHTML = list.map(p => `
+    <article class="card">
+      <div class="flag">${p.icon}</div>
+      <span class="badge">${p.cat === "PSN" ? "GIFT CARD" : p.cat === "PUBG" ? "GAME TOP-UP" : "ROBUX"}</span>
+      <h3>${p.name}</h3>
+      <p class="desc">${p.cat === "PSN" ? "Carte régionale PlayStation" : p.cat === "PUBG" ? "Recharge PUBG Mobile" : "Robux pour Roblox"}</p>
+      <div class="price">${money(p.price)}</div>
+      <small>Prix affiché en roupies mauriciennes.</small>
+      <button class="add" onclick="addToCart(${p.id})">＋ Ajouter au panier</button>
+    </article>`).join("");
+}
+
+function filterProducts(cat,button){
+  activeCategory = cat;
+  document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  renderProducts();
+}
+
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+}
+
+function changeQty(id,delta){
+  cart[id] = (cart[id] || 0) + delta;
+  if(cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+
+function removeItem(id){
+  delete cart[id];
+  renderCart();
+}
+
+function clearCart(){
+  cart = {};
+  renderCart();
+}
+
+function renderCart(){
+  const ids = Object.keys(cart);
+  const count = ids.reduce((sum,id)=>sum+cart[id],0);
+  document.getElementById("count").textContent = count;
+  document.getElementById("total").textContent = money(
+    ids.reduce((sum,id)=>sum+products.find(p=>p.id===Number(id)).price*cart[id],0)
+  );
+  const box = document.getElementById("cart-items");
+  if(!ids.length){
+    box.innerHTML = '<p class="empty">Ton panier est vide. Ajoute un produit pour commencer.</p>';
+    return;
+  }
+  box.innerHTML = ids.map(id=>{
+    const p = products.find(item=>item.id===Number(id));
+    return `<div class="cart-item">
+      <div><div class="item-name">${p.name}</div>
+      <div class="item-price">${money(p.price)} × ${cart[id]} = ${money(p.price*cart[id])}</div>
+      <div class="qty">
+        <button onclick="changeQty(${p.id},-1)">−</button><span>${cart[id]}</span>
+        <button onclick="changeQty(${p.id},1)">+</button>
+      </div></div>
+      <button class="remove" onclick="removeItem(${p.id})">Retirer</button>
+    </div>`;
+  }).join("");
+}
+
+function checkout(){
+  const ids = Object.keys(cart);
+  if(!ids.length){
+    alert("Ton panier est vide. Ajoute d'abord un produit.");
+    return;
+  }
+  let total = 0;
+  let message = "Bonjour MauriGames ! Je voudrais commander :%0A%0A";
+  ids.forEach(id=>{
+    const p = products.find(item=>item.id===Number(id));
+    total += p.price*cart[id];
+    message += "• " + encodeURIComponent(p.name) + " x" + cart[id] +
+      " — " + encodeURIComponent(money(p.price*cart[id])) + "%0A";
+  });
+  message += "%0A" + encodeURIComponent("Total estimé : "+money(total)) +
+    "%0A%0AMerci de confirmer la disponibilité et ma commande.";
+  window.location.href = "https://wa.me/23054298285?text=" + message;
+}
+
+renderProducts();
+renderCart();
+</script>
 </body>
 </html>
